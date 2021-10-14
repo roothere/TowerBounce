@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7ca93273361014e9c0fcdb920961f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeRestart: 3
+  delayBeforeRestart: 1
 --- !u!1 &2000384290
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +370,8 @@ MonoBehaviour:
   - {fileID: 2910508791214800796, guid: 1948fd4a28e179840905054b25fa8fac, type: 3}
   - {fileID: 2910508791214800796, guid: 3e35c59f9fe416647972152b80c429de, type: 3}
   - {fileID: 2910508791214800796, guid: 32383c4772708554fbcbb42cb5efd785, type: 3}
+  _platformTest:
+  - {fileID: 1146499552738768436, guid: e0be0b2aa0171a84ba675bdd6b2a7261, type: 3}
   _finisPlatform: {fileID: 4852346004128677971, guid: c160f64160bae0d4a857106b7bd1917f, type: 3}
 --- !u!4 &2000384292
 Transform:
@@ -398,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateSpeed: 100
-  turn: 1
+  turn: 0
 --- !u!54 &2000384294
 Rigidbody:
   m_ObjectHideFlags: 0
