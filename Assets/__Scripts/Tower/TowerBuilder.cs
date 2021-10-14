@@ -9,7 +9,7 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private SpawnPlatform _spawnPlatform;
     [SerializeField] private Platform[] _platform;
 
-    [SerializeField] private Platform[] _platformTest;
+        //[SerializeField] private Platform[] _platformTest;
     
     [SerializeField] private FinishPlatform _finisPlatform;
 
@@ -33,7 +33,7 @@ public class TowerBuilder : MonoBehaviour
 
         for (int i = 0; i < _levelCount; i++)
         {
-            SpawnPlatform(_platformTest[Random.Range(0, _platformTest.Length)], ref spawnPosition, this.transform);
+            SpawnPlatform(_platform[Random.Range(0, _platform.Length)], ref spawnPosition, this.transform);
         }
 
         SpawnPlatform(_finisPlatform, ref spawnPosition, this.transform);
