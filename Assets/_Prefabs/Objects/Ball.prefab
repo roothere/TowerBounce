@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5493915640670128239
 Rigidbody:
@@ -129,6 +129,10 @@ MonoBehaviour:
   _jumpForce: 3.5
   _lastTimeCollisionEnter: 0
   _timeDelayBetweenCollisionEnter: 0.3
+  _type:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &5493915640670128238
 MonoBehaviour:
   m_ObjectHideFlags: 0

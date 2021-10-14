@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     public static Ball S;
+
+    public static int _counter = 0;
 
     private void Awake()
     {
@@ -22,11 +22,13 @@ public class Ball : MonoBehaviour
     {
         if (other.TryGetComponent(out PlatformSegment platformSegment))
         {
+            print(_counter + "Triggered");
             other.GetComponentInParent<Platform>().Break();
+            _counter++;
         }
     }
 
-    void DestroyBall()
+    public void DestroyBall()
     {
         Destroy(this.gameObject);
     }

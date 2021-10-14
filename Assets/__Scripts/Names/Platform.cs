@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,7 +11,20 @@ public class Platform : MonoBehaviour
         PlatformSegment[] platformSegments = GetComponentsInChildren<PlatformSegment>();
         foreach (var segment in platformSegments)
         {
-            segment.Bounce(_bounceForce, transform.position, _bounceRadius);
+            Collider coll = segment.GetComponent<Collider>();
+            if (coll.isTrigger) {
+                Destroy(segment.gameObject);
+            }
+            else {
+                if (segment.gameObject.TryGetComponent(out DangerousSegment component)) Destroy(component);
+                segment.Bounce(_bounceForce, transform.position, _bounceRadius);
+            }
         }
+        Invoke("DeletePlatform", 2f);
+    }
+
+    private void DeletePlatform()
+    {
+        Destroy(this.gameObject);
     }
 }

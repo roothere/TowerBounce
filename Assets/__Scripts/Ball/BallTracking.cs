@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.PlayerLoop;
 
 public class BallTracking : MonoBehaviour
 {
@@ -29,7 +25,7 @@ public class BallTracking : MonoBehaviour
     {
         if (_ball == null)
         {
-            SceneManager.LoadScene("_Scene_0");
+            Manager.S.DelayedRestart();
             return;
         }
         if (_ball.transform.position.y < _minBallPosition.y)

@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764aa76c85b914f4d9a808120a689508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bounceForce: 50
-  _bounceRadius: 50
+  _bounceForce: 750
+  _bounceRadius: 2
 --- !u!1001 &830869491929599299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87432972902139795, guid: 4717f55ed924d2b4d98a0778331474de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 87432972902139795, guid: 4717f55ed924d2b4d98a0778331474de, type: 3}
       propertyPath: m_LocalPosition.z

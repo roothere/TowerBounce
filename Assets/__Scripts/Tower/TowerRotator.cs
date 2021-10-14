@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class TowerRotator : MonoBehaviour
@@ -18,18 +17,17 @@ public class TowerRotator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        /*if (Input.GetKeyDown(KeyCode.Space)) {
             turn *= -1;
         }
-        _rigidbody.AddTorque(turn * Vector3.up * Time.deltaTime * _rotateSpeed);
+        _rigidbody.angularVelocity = (turn * Vector3.down * Time.deltaTime * _rotateSpeed);*/
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {
                 float torque = touch.deltaPosition.x * Time.deltaTime * _rotateSpeed;
-                _rigidbody.AddTorque(Vector3.up * torque);
+                _rigidbody.AddTorque(Vector3.down * torque);
             }
         }
     }
