@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -18,26 +19,10 @@ public class BallJumper : MonoBehaviour
 
         if (Time.time < _lastTimeCollisionEnter) return;
 
-        if (collision.gameObject.TryGetComponent(out DangerousSegment dangerousSegment)) {
-            if (!DestroyBySuperPower(collision.gameObject)) Ball.S.DestroyBall();
-            return;
-        }
+        if (CheckPlatformType<FinishPlatform>(collision.gameObject)) return;
+        if (CheckPlatformType<DangerousSegment>(collision.gameObject)) return;
+        if (CheckPlatformType<PlatformSegment>(collision.gameObject)) return;
 
-        if (collision.gameObject.TryGetComponent(out FinishPlatform finishPlatform)) {
-            Ball.DisableFallingBallParticles();
-            Ball.powerCounter = 0;
-            FinishPlatform.S.isFinished = true;
-            Manager.S.DelayedRestart();
-            return;
-        }
-
-        if (collision.gameObject.TryGetComponent(out PlatformSegment platformSegment)) {
-            DestroyBySuperPower(collision.gameObject);
-            _rigidbody.velocity = Vector3.zero;
-            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _lastTimeCollisionEnter = Time.time + _timeDelayBetweenCollisionEnter;
-            return;
-        }
     }
 
     private bool DestroyBySuperPower(GameObject go)
@@ -55,19 +40,23 @@ public class BallJumper : MonoBehaviour
         return true;
     }
 
-    /*private bool CheckPlatform<T>(GameObject go)
+    private bool CheckPlatformType<T>(GameObject go)
     {
         if (go.TryGetComponent(out T platform) == false) return false;
 
         switch (platform)
         {
-            case Finish type:
+            case FinishPlatform type:
+                Ball.DisableFallingBallParticles();
+                Ball.powerCounter = 0;
+                FinishPlatform.S.isFinished = true;
                 Manager.S.DelayedRestart();
                 break;
             case DangerousSegment type:
-                Ball.S.DestroyBall();
+                if (!DestroyBySuperPower(go)) Ball.S.DestroyBall();
                 break;
             case PlatformSegment type:
+                DestroyBySuperPower(go);
                 _rigidbody.velocity = Vector3.zero;
                 _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
                 _lastTimeCollisionEnter = Time.time + _timeDelayBetweenCollisionEnter;
@@ -75,5 +64,5 @@ public class BallJumper : MonoBehaviour
         }
 
         return true;
-    }*/
+    }
 }
