@@ -17,13 +17,16 @@ public class TowerRotator : MonoBehaviour
 
     private void Update()
     {
-        turn = Input.GetAxisRaw("Horizontal");
+        RotateTower();
+    }
+
+    private void RotateTower()
+    {
+        turn = -Input.GetAxisRaw("Horizontal");
         _rigidbody.angularVelocity = (turn * Vector3.down * Time.deltaTime * _rotateSpeed * 2);
-        if (Input.touchCount > 0)
-        {
+        if (Input.touchCount > 0) {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
-            {
+            if (touch.phase == TouchPhase.Moved) {
                 float torque = touch.deltaPosition.x * Time.deltaTime * _rotateSpeed;
                 _rigidbody.angularVelocity = (Vector3.down * torque);
             }

@@ -9,7 +9,7 @@ public class TowerBuilder : MonoBehaviour
     [SerializeField] private SpawnPlatform _spawnPlatform;
     [SerializeField] private Platform[] _platform;
 
-        //[SerializeField] private Platform[] _platformTest;
+    [SerializeField] private Platform[] _platformTest;
     
     [SerializeField] private FinishPlatform _finisPlatform;
 

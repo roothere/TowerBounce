@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bounceForce: 750
-  _bounceRadius: 2
+  _bounceRadius: 5
   _ball: {fileID: 5493915640670128238, guid: dc014cfbf5e1106449905568133f2557, type: 3}
   _spawnPoint: {fileID: 1660031243477837733}
 --- !u!1001 &3688854400414777166

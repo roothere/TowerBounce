@@ -24,7 +24,8 @@ public class BallJumper : MonoBehaviour
         }
 
         if (collision.gameObject.TryGetComponent(out FinishPlatform finishPlatform)) {
-            Ball.S._particle.Stop();
+            Ball.DisableFallingBallParticles();
+            Ball.powerCounter = 0;
             FinishPlatform.S.isFinished = true;
             Manager.S.DelayedRestart();
             return;
@@ -47,10 +48,10 @@ public class BallJumper : MonoBehaviour
             return false;
         }
 
-        Ball.S._particle.Stop();
+        Ball.DisableFallingBallParticles();
         go.GetComponentInParent<Platform>().Break();
-        
         Ball.powerCounter = 0;
+
         return true;
     }
 

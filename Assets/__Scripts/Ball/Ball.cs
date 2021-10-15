@@ -1,4 +1,6 @@
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class Ball : MonoBehaviour
 {
@@ -6,11 +8,16 @@ public class Ball : MonoBehaviour
 
     public static int powerCounter = 0;
 
-    [SerializeField] private Color finishColor = Color.red;
-    [SerializeField] private Color startColor;
-    [SerializeField] private float step = 0f;
+    [SerializeField] private Color _finishColor = Color.red;
+    [SerializeField] private Color _startColor;
+    [SerializeField] private float step;
+    [SerializeField] private float increaserCoef = 0.15f;
+    [SerializeField] private float colorChangerCoef = 10.0f;
 
-    public ParticleSystem _particle;
+    public static ParticleSystem _particle;
+
+    private float _maxBallSize = 0.5f;
+    private Vector3 _startScale;
     private Renderer _renderer;
     private Rigidbody _rigidbody;
 
@@ -28,23 +35,38 @@ public class Ball : MonoBehaviour
         _particle = GetComponentInChildren<ParticleSystem>();
         _renderer = GetComponent<Renderer>();
         _rigidbody = GetComponent<Rigidbody>();
-        startColor = _renderer.material.color;
+
+        _startColor = _renderer.material.color;
+        _startScale = transform.localScale;
 
     }
 
     private void Update()
     {
-        if (powerCounter > 0 && _rigidbody.velocity.y < 0)
-        {
+        PaintBallAfterTrigger();
+        OversizeBallAfterTrigger();
+    }
+
+    private void PaintBallAfterTrigger()
+    {
+        if (powerCounter > 1 && _rigidbody.velocity.y < 0) {
             float lerp = Mathf.Lerp(0, 1, step);
-            if (step < 1) step += 1f * Time.deltaTime;
-            _renderer.material.color = Color.Lerp(startColor, finishColor, lerp);
-        }
-        else
-        {
-            _renderer.material.color = startColor;
+            if (step < 1) step += colorChangerCoef * Time.deltaTime;
+            _renderer.material.color = Color.Lerp(_startColor, _finishColor, lerp);
+        } else {
+            _renderer.material.color = _startColor;
             step = 0;
-            return;
+        }
+    }
+
+    private void OversizeBallAfterTrigger()
+    {
+        if (powerCounter > 0 && _rigidbody.velocity.y < 0) {
+            Vector3 scaleIncreaser = increaserCoef * Time.deltaTime * Vector3.one;
+            if (transform.localScale.y < _maxBallSize) transform.localScale += scaleIncreaser;
+        } else {
+            transform.localScale = _startScale;
+            step = 0;
         }
     }
 
@@ -54,13 +76,22 @@ public class Ball : MonoBehaviour
         {
             other.GetComponentInParent<Platform>().Break();
             powerCounter++;
-            if (powerCounter == 3) 
-                _particle.Play();
+            EnableFallingBallParticles();
         }
     }
 
     public void DestroyBall()
     {
         Destroy(this.gameObject);
+    }
+
+    public static void EnableFallingBallParticles()
+    {
+        if (powerCounter == 3)
+            _particle.Play();
+    }
+
+    public static void DisableFallingBallParticles() {
+        _particle.Stop();
     }
 }
