@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private Color _startColor;
     [SerializeField] private float step;
     [SerializeField] private float increaserCoef = 0.15f;
-    [SerializeField] private float colorChangerCoef = 10.0f;
+    [SerializeField] private float colorChangerCoef = 1.0f;
 
     public static ParticleSystem _particle;
 

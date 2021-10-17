@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7ca93273361014e9c0fcdb920961f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeRestart: 3
+  delayBeforeRestart: 2
 --- !u!1 &2000384290
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df7b2f6232d61442ae355dc017ee841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateSpeed: 200
+  _rotateSpeed: 15
   turn: 0
 --- !u!54 &2000384294
 Rigidbody:

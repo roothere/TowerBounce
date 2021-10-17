@@ -10,4 +10,5 @@ public class PlatformSegment : MonoBehaviour
             rigidbody.AddExplosionForce(force, center, radius);
         }
     }
+
 }

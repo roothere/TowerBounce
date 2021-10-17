@@ -23,7 +23,7 @@ public class TowerRotator : MonoBehaviour
     private void RotateTower()
     {
         turn = -Input.GetAxisRaw("Horizontal");
-        _rigidbody.angularVelocity = (turn * Vector3.down * Time.deltaTime * _rotateSpeed * 2);
+        _rigidbody.angularVelocity = (turn * Vector3.down * Time.deltaTime * _rotateSpeed * 20);
         if (Input.touchCount > 0) {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved) {
